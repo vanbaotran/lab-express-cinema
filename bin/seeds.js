@@ -80,4 +80,20 @@ const movies = [
       showtimes: ['13:00', '15:30', '18:00', '20:10', '22:40']
     }
   ];
-  
+const mongoose = require('mongoose');
+const Movie = require('../models/Movie.model.js');
+
+const DB_NAME='movie_project';
+
+mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+Movie.create(movies)
+  .then(moviesFromDB=>{
+    console.log(`Created ${moviesFromDB.length} movies`);
+    mongoose.connection.close();
+  })
+  .catch(err=>console.log(`An error occurred while creating books from the DB: ${err}`));
