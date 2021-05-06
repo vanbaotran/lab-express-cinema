@@ -6,16 +6,25 @@ const router = express.Router();
 router.get('/', (req, res, next) => res.render('index'));
 
 router.get('/movies',(req,res,next)=>{
-    Movie.find()
+    Movie.find({})
     .then(allMoviesFromDB =>{
-        console.log('Retrieved movies from DB',allMoviesFromDB)
-        res.render('movies',{allMovies:allMoviesFromDB})
+        console.log('Retrieved movies from DB',allMoviesFromDB);
+        res.render('movies',{allMovies:allMoviesFromDB});
     })
     .catch(err=>{
         console.log('Error while getting movies from DB',err);
         next(err);
     })
 })
-    
+router.get('/movies/:id',(req,res,next) => {
+    Movie.find({})
+    .then(allMoviesFromDB =>{
+        // console.log('id',req.params.id);  
+        let theMovie;
+        theMovie = allMoviesFromDB.find(function (el) {return req.params.id===el.id})
+        res.render('details', {data:theMovie})
+    })
+    .catch(err=>console.log('oops',err))
+})
 // })
 module.exports = router;
