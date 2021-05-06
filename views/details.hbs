@@ -1,5 +1,19 @@
-<a href='/views/movies.hbs'>Go back</a>
-<img src='{{data.image}}'>
-<h1>{{data.title}}</h1>
-<h2>Director: {{data.director}}</h2>
-
+<section id='details'>
+    <img src='{{data.image}}'>
+    <div id='details'>
+        <a href='/movies'>Go back</a>
+        <h1>{{data.title}}</h1>
+        <h2>Director: {{data.director}}</h2>
+        <ul>
+            {{#each data.stars}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <p id='description'>{{data.description}}</p>
+        <ul id='showtimes'>
+            {{#each data.showtimes}}
+            <li>{{this}}|</li>
+            {{/each}}
+        </ul>
+    </div>
+</section>

@@ -1,16 +1,43 @@
 body {
     padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-   
-    background-color: pink;
+ 
   }
   
-  a {
+#list ul {
+  display: flex;
+  flex-wrap: wrap;
+  bbackground-color:pink;
+}
+#list li{
+  text-align: center;
+  width: 25%;
+  margin:30px;
+  list-style: none;
+}
+
+a {
     text-decoration: none;
     color: #00B7FF;
-  }
+}
   
-  #homePage{
-    background-image: url(../images/cinema.jpg);
-    background-size:cover;
-  }
+#homePage{
+  background-image: url(../images/cinema.jpg);
+  background-size:cover;
+}
+#showtimes {
+  display: flex;
+}
+#showtimes li{
+  list-style: none;
+}
+section {
+  display: flex;
+  align-items: flex-start;
+}
+#description {
+  width: 60%;
+}
+#details img{
+  margin:30px;
+}

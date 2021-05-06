@@ -17,14 +17,21 @@ router.get('/movies',(req,res,next)=>{
     })
 })
 router.get('/movies/:id',(req,res,next) => {
-    Movie.find({})
-    .then(allMoviesFromDB =>{
-        // console.log('id',req.params.id);  
-        let theMovie;
-        theMovie = allMoviesFromDB.find(function (el) {return req.params.id===el.id})
-        res.render('details', {data:theMovie})
-    })
-    .catch(err=>console.log('oops',err))
+    // Movie.find({})
+    // .then(allMoviesFromDB =>{
+    //     // console.log('id',req.params.id);  
+    //     let theMovie;
+    //     theMovie = allMoviesFromDB.find(function (el) {return req.params.id===el.id})
+    //     res.render('details', {data:theMovie})
+    Movie.findById(req.params.id)
+        .then(theMovie=>{
+            console.log('id',req.params.id);
+            res.render('details',{data:theMovie});
+        })
+        .catch(err=>{
+            console.log('Error while retrieving movie details: ', error);
+            next(err);
+        });
 })
 // })
 module.exports = router;
